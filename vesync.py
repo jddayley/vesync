@@ -4,6 +4,7 @@ from random import randint
 from datetime import datetime
 from urllib.request import urlopen
 import urllib3
+
 urllib3.disable_warnings()
 # Define pseudo constants
 SCRIPT_NAME = 'vesync.py'
@@ -16,11 +17,14 @@ st = datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
 token = ""
 accountID = ""
 import logging
-logging.basicConfig(filename='vesync.log',
-                            filemode='a',
-                            format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
-                            datefmt='%H:%M:%S',
-                            level=logging.DEBUG)
+
+logging.basicConfig(
+    filename='vesync.log',
+    filemode='a',
+    format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+    datefmt='%H:%M:%S',
+    level=logging.DEBUG)
+
 
 class VesyncApi:
     def __init__(self, username, password):
@@ -84,7 +88,6 @@ class VesyncApi:
                           json=payload)
         return r
 
-
     def get_devices(self, id):
         global token
         global accountID
@@ -135,11 +138,14 @@ class VesyncApi:
             "token": token,
             "traceId": "1639267601802",
             "userCountryCode": "US"
-            }
+        }
         headers = {
-            'Content-Type': 'application/json',
-            'Accept': '*/*',
-            'user-agent': 'VeSync/3.1.54 (com.etekcity.vesyncPlatform; build:10; iOS 15.1.1) Alamofire/5.2.1'
+            'Content-Type':
+            'application/json',
+            'Accept':
+            '*/*',
+            'user-agent':
+            'VeSync/3.1.54 (com.etekcity.vesyncPlatform; build:10; iOS 15.1.1) Alamofire/5.2.1'
         }
         r = requests.put(BASE_URL + '/cloud/v2/deviceManaged/bypassV2',
                          headers=headers,
@@ -170,11 +176,14 @@ class VesyncApi:
             "token": token,
             "traceId": "1639267601802",
             "userCountryCode": "US"
-            }
+        }
         headers = {
-            'Content-Type': 'application/json',
-            'Accept': '*/*',
-            'user-agent': 'VeSync/3.1.54 (com.etekcity.vesyncPlatform; build:10; iOS 15.1.1) Alamofire/5.2.1'
+            'Content-Type':
+            'application/json',
+            'Accept':
+            '*/*',
+            'user-agent':
+            'VeSync/3.1.54 (com.etekcity.vesyncPlatform; build:10; iOS 15.1.1) Alamofire/5.2.1'
         }
         r = requests.put(BASE_URL + '/cloud/v2/deviceManaged/bypassV2',
                          headers=headers,
