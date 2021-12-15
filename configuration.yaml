@@ -1,0 +1,31 @@
+switch:
+  - platform: mqtt
+    unique_id: Humidifier_Basement
+    name: "Humidifier-Basement"
+    state_topic: "home/humidifier/state/basement"
+    value_template: >-
+      {% if (value_json.enabled)%}
+       on
+      {% else %}
+       off
+      {% endif %}
+    command_topic: "home/humidifier/command"
+    payload_on: "{'vsaq7588f6f84290868639af8c171175': 'on'}"
+    payload_off: "{'vsaq7588f6f84290868639af8c171175': 'off'}"
+    json_attributes_topic: "home/humidifier/state/basement"
+    json_attributes_template: "{{ value_json | tojson }}"
+  - platform: mqtt
+    unique_id: Humidifier_Upstairs
+    name: "Humidifier-Upstairs"
+    state_topic: "home/humidifier/state/upstairs"
+    value_template: >-
+      {% if (value_json.enabled)%}
+       on
+      {% else %}
+       off
+      {% endif %}
+    command_topic: "home/humidifier/command"
+    payload_on: "{'vsaq7de16d3b4db2bae840277b436b61': 'off'}"
+    payload_off: "{'vsaq7de16d3b4db2bae840277b436b61': 'off'}"
+    json_attributes_topic: "home/humidifier/state/upstairs"
+    json_attributes_template: "{{ value_json | tojson }}"
