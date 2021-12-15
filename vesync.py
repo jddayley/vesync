@@ -15,6 +15,13 @@ st = datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
 #Creates empty token and accountid variables which are automatically filled when script runs as long as username and password entered above.
 token = ""
 accountID = ""
+import logging
+logging.basicConfig(filename='vesync.log',
+                            filemode='a',
+                            format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+                            datefmt='%H:%M:%S',
+                            level=logging.DEBUG)
+
 class VesyncApi:
     def __init__(self, username, password):
         global token
@@ -35,12 +42,12 @@ class VesyncApi:
             raise RuntimeError("Invalid username or password")
         else:
             self._account = account
-            #print (account)
+            #logging.info (account)
             token = account['tk']
-            #print (token)
+            #logging.info (token)
             accountID = account['accountID']
-            #print (accountID)
-            print('Account Connection Successful')
+            #logging.info (accountID)
+            logging.info('Account Connection Successful')
 
         self._devices = []
 
@@ -137,7 +144,7 @@ class VesyncApi:
         r = requests.put(BASE_URL + '/cloud/v2/deviceManaged/bypassV2',
                          headers=headers,
                          json=payload)
-        print(r.text)
+        logging.info(r.text)
 
     def turn_on(self, id):
         payload = {
@@ -172,4 +179,4 @@ class VesyncApi:
         r = requests.put(BASE_URL + '/cloud/v2/deviceManaged/bypassV2',
                          headers=headers,
                          json=payload)
-        print(r.text)
+        logging.info(r.text)

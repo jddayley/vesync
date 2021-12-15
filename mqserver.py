@@ -5,10 +5,9 @@ from vesync import VesyncApi
 from mqclient import VesyncMQ
 import logging
 import re
-USERNAME = ""
-PASSWORD = ""
-
-logging.basicConfig(filename='/usr/src/app/mq.log',
+#Passwords stored in seperate file
+from secrets import *
+logging.basicConfig(filename='vesync.log',
                             filemode='a',
                             format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
                             datefmt='%H:%M:%S',

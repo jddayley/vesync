@@ -4,17 +4,14 @@ import json
 from vesync import VesyncApi
 import paho.mqtt.client as mqtt
 import logging
-logging.basicConfig(filename='/usr/src/app/mq.log',
+#Passwords stored in seperate file
+from secrets import *
+logging.basicConfig(filename='vesync.log',
                             filemode='a',
                             format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
                             datefmt='%H:%M:%S',
                             level=logging.DEBUG)
-USERNAME = ""
-PASSWORD = ""
-MQNAME = ''
-MQPASSWORD = ''
-MQSERVER = ''
-MQPORT = 1883
+
 class VesyncMQ:
     def connect(self,id, qname):
         client = mqtt.Client("Humidifier_%s" % randint(1000,9999))  # Create instance of client with client ID “digi_mqtt_test”
