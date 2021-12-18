@@ -189,3 +189,41 @@ class VesyncApi:
                          headers=headers,
                          json=payload)
         logging.info(r.text)
+    def set_target(self, id, target):
+        payload = {
+            "acceptLanguage": "en",
+            "accountID": accountID,
+            "appVersion": "VeSync 3.1.54 build10",
+            "cid": id,
+            "configModule": "WFON_AHM_LUH-A602S-WUS_US",
+            "debugMode": False,
+            "deviceRegion": "US",
+            "method": "bypassV2",
+            "payload": {
+                "data": {
+                    "target_humidity": target
+                },
+                "method": "setTargetHumidity",
+                "source": "APP"
+            },
+            "phoneBrand": "iPhone",
+            "phoneOS": "iOS 15.1.1",
+            "timeZone": "America/New_York",
+            "token": token,
+            "traceId": "1639267601802",
+            "userCountryCode": "US"
+        }
+        headers = {
+            'Content-Type':
+            'application/json',
+            'Accept':
+            '*/*',
+            'user-agent':
+            'VeSync/3.1.54 (com.etekcity.vesyncPlatform; build:10; iOS 15.1.1) Alamofire/5.2.1'
+        }
+        r = requests.put(BASE_URL + '/cloud/v2/deviceManaged/bypassV2',
+                         headers=headers,
+                         json=payload)
+        logging.info(r.text)
+
+

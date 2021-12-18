@@ -48,6 +48,10 @@ def on_message(
         logging.info("Turning OFF")
         api = VesyncApi(USERNAME, PASSWORD)
         api.turn_off(found)
+    elif int(payload) > 40 and int (payload) < 80:
+        logging.info("Adjusting Humidity" + str(payload))
+        api = VesyncApi(USERNAME, PASSWORD)
+        api.set_target(found, int(payload))
     client = VesyncMQ()
     client.main()
 
